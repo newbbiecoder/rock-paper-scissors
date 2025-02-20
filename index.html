@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissors</title>
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+
+
+    <script>
+        // Create a function getComputerChoice
+        // Return rock, paper or scissors randomly
+        // Generate number between 1 and 3
+        // If 1 then rock
+        // If 2 then paper
+        // If 3 then scissors
+
+        let number;
+        let humanScore = 0;
+        let computerScore = 0;
+          
+        function getComputerChoice(min = 1,max = 3){
+
+            number = Math.round(Math.random() * (max - min) + min);
+
+            if (number == 1){
+                return "rock";
+            }
+            else if (number == 2){
+                return "paper";
+            }
+            else if (number == 3){
+                return "scissors";
+            }
+        }
+
+        function getHumanChoice(){
+
+            let input = prompt("Enter your choice :- ");
+
+            if(input.toLowerCase() == "rock" || input.toLowerCase() == "paper" || input.toLowerCase() == "scissors"){
+                return input.toLowerCase();
+            }
+            else{
+                return "Please enter a valid input";
+            }
+        }    
+
+        function playGame(){ 
+
+
+            for(i = 0; i < 5; i++){
+
+                const humanSelection = getHumanChoice();
+                const computerSelection = getComputerChoice(); 
+                
+                playRound(humanSelection, computerSelection);
+                
+
+                function playRound(humanChoice, computerChoice){              
+
+                        // Not a valid input case
+
+                        if(humanChoice == "Please enter a valid input"){
+                            console.log("You lose! Not a valid input.");
+                            computerScore += 10;
+                            console.log("Computer Score :- " + computerScore.toString() + " points!");
+                            console.log("Human Score :- " + humanScore.toString() + " points!");
+                        }
+
+                        // Tie Case
+
+                        else if(humanChoice == computerChoice){
+                            console.log("It's a tie! " + humanChoice + " can't beat "+ computerChoice);
+                            console.log("Computer Score :- " + computerScore.toString() + " points!");
+                            console.log("Human Score :- " + humanScore.toString() + " points!");
+                        }
+
+                        // Win Cases
+
+                        else if(humanChoice == "rock" && computerChoice == "scissors"){
+                            console.log("You Won! Rock beats Scissors");
+                            humanScore += 10;
+                            console.log("Computer Score :- " + computerScore.toString() + " points!");
+                            console.log("Human Score :- " + humanScore.toString() + " points!");
+                        }
+
+                        else if(humanChoice == "paper" && computerChoice == "rock"){
+                            console.log("You Won! Paper beats Rock");
+                            humanScore += 10;
+                            console.log("Computer Score :- " + computerScore.toString() + " points!");
+                            console.log("Human Score :- " + humanScore.toString() + " points!");
+                        }
+
+                        else if(humanChoice == "scissors" && computerChoice == "paper"){
+                            console.log("You Won! Scissors beats Paper");
+                            humanScore += 10;
+                            console.log("Computer Score :- " + computerScore.toString() + " points!");
+                            console.log("Human Score :- " + humanScore.toString() + " points!");
+                        }
+
+                        // Lose Cases
+
+                        else if(humanChoice == "rock" && computerChoice == "paper"){
+                            console.log("You Lose! Rock beats paper");
+                            computerScore += 10;
+                            console.log("Computer Score :- " + computerScore.toString() + " points!");
+                            console.log("Human Score :- " + humanScore.toString() + " points!");
+                        }
+
+                        else if(humanChoice == "paper" && computerChoice == "scissors"){
+                            console.log("You Lose! Scissors beats Paper");
+                            computerScore += 10;
+                            console.log("Computer Score :- " + computerScore.toString() + " points!");
+                            console.log("Human Score :- " + humanScore.toString() + " points!");
+                        }
+
+                        else if(humanChoice == "scissors" && computerChoice == "rock"){
+                            console.log("You Lose! Rock beats Scissors");
+                            computerScore += 10;
+                            console.log("Computer Score :- " + computerScore.toString() + " points!");
+                            console.log("Human Score :- " + humanScore.toString() + " points!");
+                        }  
+                }
+                
+            }
+
+            if(humanScore > computerScore){
+                return "🏆 Congrats you crushed it! (Literally, if they picked scissors.) Bow down, peasants!"
+            }
+            else if(computerScore > humanScore){
+                return "😭 You fought bravely... and still got completely outplayed. Better luck next time!"
+            }
+            else if(computerScore == humanScore){
+                return "🤝 Great minds think alike... or maybe neither of us has a strategy. Rematch?"
+            }
+
+        }
+        console.log(playGame());
+
+    </script>
+    
+</body>
+</html>
